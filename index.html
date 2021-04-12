@@ -33,10 +33,20 @@
 
   <script>
     function format(input) {
-      return JSON.stringify(JSON.parse(input), null, 2);
+      try {
+        return JSON.stringify(JSON.parse(input), null, 2);
+      } catch (e) {
+        alert("Error: " + e)
+      }
     }
     function buttonClick() {
-      document.getElementById("json").value = format(document.getElementById("json").value);
+      var input = document.getElementById("json").value.trim();
+      if (!input.startsWith("{") && input.includes("{"))
+        input = input.substring(input.indexOf("{"));
+
+      var formatted = format(input);
+      if (formatted !== undefined)
+        document.getElementById("json").value = formatted;
     }
   </script>
 </body>
