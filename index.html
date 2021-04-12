@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>JSON Formatter</title>
+  <style>
+    body {
+      height: 100%;
+    }
+
+    #json {
+      font-family: Arial;
+      font-size: 12pt;
+      width: 99.5%;
+      height: 90vh;
+    }
+
+    #buttonDiv {
+      display: flex;
+      justify-content: center;
+      margin-top: 1vh;
+    }
+  </style>
+</head>
+
+<body>
+  <textarea type="text" id="json">
+  </textarea>
+  <div id="buttonDiv">
+    <button onclick="buttonClick();">Format</button>
+  </div>
+
+  <script>
+    function format(input) {
+      return JSON.stringify(JSON.parse(input), null, 4);
+    }
+    function buttonClick() {
+      document.getElementById("json").value = format(document.getElementById("json").value);
+    }
+  </script>
+</body>
